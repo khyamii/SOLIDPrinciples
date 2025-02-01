@@ -1,6 +1,6 @@
 package interfaceSegregation.Example2
 
-class CreditCardPayment : PaymentMethod {
+class CreditCardPayment : ValidateCreditCard {
     override fun validatePaymentDetails() {
         println("Validating credit card details...")
     }
@@ -9,7 +9,4 @@ class CreditCardPayment : PaymentMethod {
         println("Processing credit card payment of $$amount.")
     }
 
-    override fun generateQRCodeForPayment() {
-        throw UnsupportedOperationException("QR code generation is not applicable for credit card payments.")
-    }
 }

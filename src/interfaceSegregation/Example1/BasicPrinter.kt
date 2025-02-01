@@ -5,9 +5,5 @@ class BasicPrinter : Printer {
         println("Printing document...")
     }
 
-    override fun scanDocument() {
-        // Not supported, but forced to implement
-        throw UnsupportedOperationException("Scanning is not supported")
-    }
 
 }

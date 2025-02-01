@@ -1,6 +1,6 @@
 package interfaceSegregation.Example1
 
-class AdvancedPrinter : Printer {
+class AdvancedPrinter : Printer,Scan {
     override fun printDocument() {
         println("Printing document...")
     }
