@@ -4,9 +4,15 @@ import LiskovSubstitution.Example1.Vehicle
 import LiskovSubstitution.Example2.Bird
 import LiskovSubstitution.Example2.FlyingBird
 import LiskovSubstitution.Example2.Penguin
-import openClosed.Example2.CustomLogger
+import dependencyInversion.Example1.AuthManager
+import dependencyInversion.Example1.EmailLogin
+import dependencyInversion.Example1.GmailLogin
+import dependencyInversion.Example2.CreditCardPayment
+import dependencyInversion.Example2.PaymentManager
+import dependencyInversion.Example2.PaypalPayment
 import openClosed.Example1.SalaryCalculator
 import openClosed.Example1.TesterSalary
+import openClosed.Example2.CustomLogger
 import singleResponsibility.Example1.LibraryManager
 import singleResponsibility.Example1.ReporterPrinter
 import singleResponsibility.Example2.ErrorLogger
@@ -14,7 +20,7 @@ import singleResponsibility.Example2.LoginManager
 
 fun main() {
 
-// singleResponsibility
+    // singleResponsibility
     // Example 1
     val libraryManager = LibraryManager()
     libraryManager.addBook("Kotlin Book")
@@ -53,6 +59,30 @@ fun main() {
 
     val penguin = Penguin()
     makeBirdMove(penguin)
+
+// DependencyInversion
+
+    // Example 1
+
+    val emailLogin = EmailLogin()
+    val gmailLogin = GmailLogin()
+    val loginwithEmail = AuthManager(emailLogin)
+    val loginWithGmail = AuthManager(gmailLogin)
+
+    loginwithEmail.login("user@example.com", "password123")
+    loginWithGmail.login("user@example.com", "password123")
+
+// Example 2
+
+    val payWithCard = CreditCardPayment()
+    val payWithPaypal = PaypalPayment()
+
+    val paymentManagerWithCredit = PaymentManager(payWithCard)
+    val paymentManagerWithPaypal = PaymentManager(payWithPaypal)
+
+    paymentManagerWithCredit.processPayment(100.0)
+    paymentManagerWithPaypal.processPayment(200.00)
+
 
 }
 
